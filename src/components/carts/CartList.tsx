@@ -3,7 +3,7 @@ import { addToCart, ICartState, removeFromCart} from "../../store/cart";
 import { IProduct, productsList } from "../../store/products";
 import { useRecoilValueLoadable } from "recoil";
 
-const CartList = ({ cart, setCart, totalCount }: { cart: ICartState;}): JSX.Element => {
+const CartList = ({ cart, setCart }: { cart: ICartState; setCart: (cart: ICartState) => void; }): JSX.Element => {
   const productsLoadable = useRecoilValueLoadable(productsList);
   let cartItem = cart.items;
   let cartId: number[] = [];
@@ -15,7 +15,6 @@ const CartList = ({ cart, setCart, totalCount }: { cart: ICartState;}): JSX.Elem
     cartCount = Object.values(cartItem).map((item) => item.count);
   }
   
-
   // cart 상태 업데이트
   const handleAddToCart = (item: IProduct) => {
     setCart(addToCart(cart, { id: item.id, count: 1 })); // addToCart 함수 사용
@@ -39,7 +38,7 @@ const CartList = ({ cart, setCart, totalCount }: { cart: ICartState;}): JSX.Elem
             : null;
 
         if (!product) return <div></div>; // product가 없다면 렌더링하지 않음
-
+        
       return (
         <div className="lg:flex lg:items-center mt-4 px-2 lg:px-0" key={product.id}>
           <Link to={`/product/${product.id}`}>
@@ -56,7 +55,7 @@ const CartList = ({ cart, setCart, totalCount }: { cart: ICartState;}): JSX.Elem
               <Link to={`/product/${product.id}`} className="link link-hover">{product.title}</Link>
             </h2>
             <p className="mt-2 mb-4 text-3xl">
-              ${product.price.toFixed(0) * count} <span className="text-2xl">(${product.price.toFixed(0)})</span>
+              ${Number((product.price * count).toFixed(0))} <span className="text-2xl">(${product.price.toFixed(0)})</span>
             </p>
             <div className="card-actions">
               <div className="btn-group">

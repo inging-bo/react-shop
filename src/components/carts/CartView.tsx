@@ -70,7 +70,7 @@ const CartView = (): JSX.Element => {
               // 장바구니에 물품이 있으면 CartList 컴포넌트 출력
               <div className="lg:flex justify-between mb-20">
                 <div>
-                  <CartList cart={cart} setCart={setCart} totalCount={totalCountLocale}/>
+                  <CartList cart={cart} setCart={setCart}/>
                 </div>
                 <div className="self-start shrink-0 flex items-center mt-10 mb-20">
                   <span className="text-xl md:text-2xl">총 : ${totalCountLocale}</span>
