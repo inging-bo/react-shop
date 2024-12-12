@@ -1,0 +1,41 @@
+@charset "utf-8";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: "Noto Sans KR", sans-serif;
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+.menu {
+  top: 112px;
+}
+
+.drawer-content {
+  max-height: initial !important;
+  min-height: -webkit-fill-available;
+}
+
+.drawer-toggle:checked + .drawer-content {
+  max-height: 100vh !important;
+}
+
+.js-searchedItem:active span {
+  color: white !important;
+}
+.card figure img {
+  max-width: 50%;
+  max-height: 50%;
+  
+}
+.main {
+  min-height: calc(100vh - 4rem - 224px);
+}
+.card:hover figure img {
+  transform: scale(1.2)
+}
+.view_image {
+  min-width: 20em;
+}
